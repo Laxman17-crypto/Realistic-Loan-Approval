@@ -44,9 +44,9 @@ SAMPLE_DF = pd.DataFrame([
 ])
 
 @pytest.fixture(scope="session")
-def sample_df(tem_path_factory):
+def sample_df(tmp_path_factory):
     """Create a small CSV file for tests and return its path."""
-    tmpdir = tem_path_factory.mktemp("data")
+    tmpdir = tmp_path_factory.mktemp("data")
     path = tmpdir / "test_loan_data.csv"
     SAMPLE_DF.to_csv(path, index=False)
     return str(path)

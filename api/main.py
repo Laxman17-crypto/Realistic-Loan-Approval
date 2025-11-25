@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.post("/predict")
 def predict(application: LoanInput):
-    payload = application.dict()
+    payload = application.model_dump()
     result = predict_from_dict(payload)
     return {"success": True, "result": result}
 

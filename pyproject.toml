@@ -18,5 +18,8 @@ dependencies = [
     "seaborn",
     "xgboost",
     "pyyaml",
-    "joblib"
+    "joblib",
+    "fastapi",
+    "uvicorn",
+    "pydantic"
 ]

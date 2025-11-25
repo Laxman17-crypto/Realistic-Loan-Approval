@@ -1,34 +1,35 @@
 import joblib
 import pandas as pd
 from data_preprocessing import engineer_features
-from utils.logger import logger
-from utils.exception import CustomException
-
+from src.utils.logger import logger
+from src.utils.exception import CustomException
 
 MODEL_PATH = "models/loan_model.pkl"
-_pipeline = None
 
 
 def load_pipeline():
-    global _pipeline
+    """Always load fresh model (pytest needs this)."""
     try:
-        if _pipeline is None:
-            _pipeline = joblib.load(MODEL_PATH)
-            logger.info("Loaded prediction pipeline.")
-        return _pipeline
+        pipeline = joblib.load(MODEL_PATH)
+        logger.info("Loaded prediction pipeline.")
+        return pipeline
     except Exception as e:
-        raise CustomException(e)
+        raise CustomException(e, f"Failed loading model from {MODEL_PATH}")
 
 
 def predict_from_dict(payload: dict):
     try:
         pipeline = load_pipeline()
+
         df = pd.DataFrame([payload])
         logger.info("Payload received for prediction.")
+
         df = engineer_features(df)
         logger.info("Features engineered for prediction.")
+
         preds = pipeline.predict(df)
         result = {"prediction": int(preds[0])}
+
         try:
             prob = pipeline.predict_proba(df)[0, 1]
             result["probability"] = float(prob)
@@ -36,6 +37,6 @@ def predict_from_dict(payload: dict):
             result["probability"] = None
 
         return result
-    except Exception as e:
-        raise CustomException(e)
 
+    except Exception as e:
+        raise CustomException(e, "Prediction failed")

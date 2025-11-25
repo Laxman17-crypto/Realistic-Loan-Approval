@@ -8,7 +8,7 @@ from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, roc_auc_score
 from data_preprocessing import create_preprocessor, engineer_features
-from utils.logger import logger
+from src.utils.logger import logger
 from utils.exception import CustomException
 
 MODEL_PATH = "models/loan_model.pkl"
@@ -31,7 +31,7 @@ def load_data(path="data/raw/Loan_approval_data_2025.csv"):
 def train(save_artifacts: bool = True):
     try:
         os.makedirs("models", exist_ok=True)
-        df = load_data()
+        df = load_data("data/raw/Loan_approval_data_2025.csv")
         df = engineer_features(df)
         target = "loan_status"
         X = df.drop(columns=[target])
@@ -63,29 +63,26 @@ def train(save_artifacts: bool = True):
             ("clf", clf)
             ])
 
-        pipeline.fit(X_train, y_train)
-        preds = pipeline.predict(X_test)
+            pipeline.fit(X_train, y_train)
+            preds = pipeline.predict(X_test)
 
 
-        try:
-            prob = pipeline.predict_proba(X_test)[:,1]
-            auc = roc_auc_score(y_test, prob)
-        except:
-            auc = 0
+            try:
+                prob = pipeline.predict_proba(X_test)[:,1]
+                auc = roc_auc_score(y_test, prob)
+            except:
+                auc = 0
 
 
-        logger.info(f"Model: {name} | AUC: {auc}")
-        if auc > best_auc:
-            best_auc = auc
-            best_model = pipeline
+            logger.info(f"Model: {name} | AUC: {auc}")
+            if auc > best_auc:
+                best_auc = auc
+                best_model = pipeline
 
 
         logger.info(f"Best model selected with AUC: {best_auc}")       
 
-        pipeline = best_model([
-                ("preprocessor", preprocessor),
-                ("clf", clf)
-            ])
+        pipeline = best_model
         pipeline.fit(X_train, y_train)
         logger.info("Model training completed.")
 
@@ -107,7 +104,7 @@ def train(save_artifacts: bool = True):
 
 
     except Exception as e:
-        raise CustomException(e)
+        raise CustomException(e, str(e))
 
 
 
