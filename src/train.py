@@ -16,7 +16,6 @@ PREPROCESSOR_PATH = "models/preprocessor.joblib"
 
 
 
-
 def load_data(path="data/raw/Loan_approval_data_2025.csv"):
     df = pd.read_csv(path)
     # Drop any one-hot dummies if present in raw file
@@ -40,7 +39,7 @@ def train(save_artifacts: bool = True):
 
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-
+        
         preprocessor = create_preprocessor()
     
         models = {
