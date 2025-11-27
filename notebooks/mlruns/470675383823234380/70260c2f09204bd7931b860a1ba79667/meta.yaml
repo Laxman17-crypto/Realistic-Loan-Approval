@@ -1,0 +1,14 @@
+artifact_uri: file:///d:/Realistic-Loan-Approval/notebooks/mlruns/470675383823234380/70260c2f09204bd7931b860a1ba79667/artifacts
+end_time: 1764238480158
+entry_point_name: ''
+experiment_id: '470675383823234380'
+lifecycle_stage: active
+run_id: 70260c2f09204bd7931b860a1ba79667
+run_name: experiment_1_baseline_models
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764238463994
+status: 3
+tags: []
+user_id: hp

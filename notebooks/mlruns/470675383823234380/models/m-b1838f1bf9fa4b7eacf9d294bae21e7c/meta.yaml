@@ -1,0 +1,10 @@
+artifact_location: file:///d:/Realistic-Loan-Approval/notebooks/mlruns/470675383823234380/models/m-b1838f1bf9fa4b7eacf9d294bae21e7c/artifacts
+creation_timestamp: 1764238468302
+experiment_id: '470675383823234380'
+last_updated_timestamp: 1764238479898
+model_id: m-b1838f1bf9fa4b7eacf9d294bae21e7c
+model_type: null
+name: best_model
+source_run_id: 70260c2f09204bd7931b860a1ba79667
+status: 2
+status_message: null

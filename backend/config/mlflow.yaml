@@ -1,0 +1,12 @@
+mlflow:
+  tracking:
+    uri: "file:./mlruns"
+    experiment_name: "loan-approval-experiments"
+  
+  registry:
+    enabled: true
+    model_name: "LoanApprovalModel"
+  
+  logging:
+    log_models: true
+    log_artifacts: true
