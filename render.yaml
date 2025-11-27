@@ -3,10 +3,11 @@ services:
     name: loan-backend
     env: docker
     plan: free
-    region: frankfurt
-    branch: main
     rootDir: backend
     dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: MODE
+        value: production
     ports:
       - port: 8000
         protocol: http
@@ -15,8 +16,6 @@ services:
     name: loan-frontend
     env: docker
     plan: free
-    region: frankfurt
-    branch: main
     rootDir: frontend
     dockerfilePath: frontend/Dockerfile
     envVars:

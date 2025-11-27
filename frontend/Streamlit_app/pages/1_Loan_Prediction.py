@@ -1,6 +1,12 @@
 import streamlit as st
 import requests
 import os
+BASE_URL = os.getenv("API_URL")
+
+if not BASE_URL:  
+    BASE_URL = "https://loan-backend.onrender.com"   # fallback for Render
+
+API_URL = BASE_URL.rstrip("/") + "/predict"
 
 st.markdown("""
 <div class="navbar"><h1>🔮 Loan Approval Prediction</h1></div>
