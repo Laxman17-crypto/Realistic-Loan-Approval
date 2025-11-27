@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: loan-backend
+    env: docker
+    plan: free
+    region: frankfurt
+    branch: main
+    rootDir: backend
+    dockerfilePath: backend/Dockerfile
+    ports:
+      - port: 8000
+        protocol: http
+
+  - type: web
+    name: loan-frontend
+    env: docker
+    plan: free
+    region: frankfurt
+    branch: main
+    rootDir: frontend
+    dockerfilePath: frontend/Dockerfile
+    envVars:
+      - key: API_URL
+        value: https://loan-backend.onrender.com
+    ports:
+      - port: 8501
+        protocol: http

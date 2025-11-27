@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import os
 
 st.markdown("""
 <div class="navbar"><h1>🔮 Loan Approval Prediction</h1></div>
@@ -7,7 +8,7 @@ st.markdown("""
 
 st.write("Fill the form and get prediction from **FastAPI backend**.")
 
-API_URL ="http://backend:8000/predict"
+API_URL = os.getenv("API_URL") + "/predict"
 
 with st.form("prediction_form"):
 
