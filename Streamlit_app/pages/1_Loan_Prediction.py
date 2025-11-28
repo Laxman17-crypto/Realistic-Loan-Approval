@@ -14,7 +14,11 @@ st.markdown("""
 
 st.write("Fill the form and get prediction from **FastAPI backend**.")
 
+<<<<<<< HEAD:frontend/Streamlit_app/pages/1_Loan_Prediction.py
 API_URL = os.getenv("API_URL") + "/predict"
+=======
+API_URL = "http://127.0.0.1:8000/predict"
+>>>>>>> parent of 8dc1fda (Deploy-ready):Streamlit_app/pages/1_Loan_Prediction.py
 
 with st.form("prediction_form"):
 
