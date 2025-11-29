@@ -164,7 +164,7 @@ with tabs[0]:
         else:
             pick_cat = st.selectbox("Pick categorical for pie", options=safe_cats)
             fig = px.pie(df_filtered, names=pick_cat, title=f'{pick_cat} Breakdown', hole=0.3)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
     with colB:
         if len(num_cols) >= 1:
             pick_num = st.selectbox("Metric for bar", options=num_cols, index=0)
@@ -172,10 +172,10 @@ with tabs[0]:
             if 'Loan_Status' in df_filtered.columns and df_filtered['Loan_Status'].nunique() <= HIGH_CARD_THRESHOLD:
                 agg = df_filtered.groupby('Loan_Status')[pick_num].mean().reset_index()
                 fig = px.bar(agg, x='Loan_Status', y=pick_num, title=f'Average {pick_num} by Loan Status')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width="stretch")
             else:
                 fig = px.histogram(df_filtered, x=pick_num, nbins=30, title=f'Distribution: {pick_num}')
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width="stretch")
         else:
             st.write("No numeric columns available for metrics.")
 
@@ -199,14 +199,14 @@ with tabs[1]:
             except Exception:
                 ts_agg = ts
             fig = px.line(ts_agg, x=ts_agg.index, y=value_col, title=f'{value_col} over time ({freq})')
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
 
             window = st.slider("Rolling window (periods)", 1, 60, 3)
             ts_roll = ts_agg.rolling(window).mean()
             fig2 = go.Figure()
             fig2.add_trace(go.Scatter(x=ts_agg.index, y=ts_agg[value_col], name='Original'))
             fig2.add_trace(go.Scatter(x=ts_roll.index, y=ts_roll[value_col], name=f'Rolling({window})'))
-            st.plotly_chart(fig2, use_container_width=True)
+            st.plotly_chart(fig2, width="stretch")
 
 # --- Tab 3: Distribution & Stats ---
 with tabs[2]:
@@ -220,7 +220,7 @@ with tabs[2]:
             st.subheader("Histogram + Rug")
             # histogram uses full filtered df but Plotly handles it efficiently
             fig = px.histogram(df_filtered, x=pick, nbins=40, marginal='rug', title=f'Histogram: {pick}')
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
         with col2:
             st.subheader("Box / Violin (sampled)")
             data_for_box = df_filtered[pick].dropna()
@@ -230,7 +230,7 @@ with tabs[2]:
             fig = go.Figure()
             fig.add_trace(go.Box(y=data_for_box, name='Box'))
             fig.add_trace(go.Violin(y=data_for_box, name='Violin', box_visible=True, meanline_visible=True))
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
 
         st.markdown("---")
         st.subheader("Summary statistics")
@@ -277,7 +277,7 @@ with tabs[3]:
             if perf_mode and plot_df.shape[0] > SCATTER_MAX:
                 plot_df = sample_for_scatter(plot_df)
             fig = px.scatter(plot_df, x=x, y=y, size=size if size else None, color=color if color else None, hover_data=list(plot_df.columns), title=f'{y} vs {x}')
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
         else:
             st.write("Need numeric columns to draw scatter")
 
@@ -289,7 +289,7 @@ with tabs[3]:
         b = st.selectbox("Category B", options=safe_cat_cols, index=1)
         ct = pd.crosstab(df_filtered[a], df_filtered[b], normalize='index')
         fig = px.bar(ct, barmode='stack', title=f'Stacked bar: {a} by {b}')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     else:
         st.info("No two low-cardinality categorical columns found for cross-tab. Avoid customer_id or other high-card columns.")
 
@@ -322,7 +322,7 @@ with tabs[4]:
                 fig = px.scatter(merged.reset_index(), x='PC1', y='PC2', color=color, title='PCA (PC1 vs PC2)')
             else:
                 fig = px.scatter(pca_df, x='PC1', y='PC2', title='PCA (PC1 vs PC2)')
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
 
             st.markdown("Explained variance ratio (first components)")
             ev = pca.explained_variance_ratio_
