@@ -16,4 +16,4 @@ services:
     startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
     envVars:
       
-      BACKEND_URL: "https://fastapi-backend.onrender.com"
+      BACKEND_URL: "https://fastapi-backend-cda5.onrender.com"
