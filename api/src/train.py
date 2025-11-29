@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, roc_auc_score
 from data_preprocessing import create_preprocessor, engineer_features
 from src.utils.logger import logger
-from utils.exception import CustomException
+from src.utils.exception import CustomException
 
 MODEL_PATH = "models/loan_model.pkl"
 PREPROCESSOR_PATH = "models/preprocessor.joblib"
