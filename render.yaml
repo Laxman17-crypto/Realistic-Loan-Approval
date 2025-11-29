@@ -1,26 +1,19 @@
 services:
   - type: web
-    name: loan-backend
-    env: docker
+    name: fastapi-backend
+    rootDir: api
+    env: python
     plan: free
-    rootDir: backend
-    dockerfilePath: backend/Dockerfile
-    envVars:
-      - key: MODE
-        value: production
-    ports:
-      - port: 8000
-        protocol: http
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
 
   - type: web
-    name: loan-frontend
-    env: docker
+    name: streamlit-frontend
+    rootDir: Streamlit_app
+    env: python
     plan: free
-    rootDir: frontend
-    dockerfilePath: frontend/Dockerfile
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
     envVars:
-      - key: API_URL
-        value: https://loan-backend.onrender.com
-    ports:
-      - port: 8501
-        protocol: http
+      
+      BACKEND_URL: "https://fastapi-backend.onrender.com"

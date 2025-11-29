@@ -1,24 +1,10 @@
 import streamlit as st
 import requests
 import os
-BASE_URL = os.getenv("API_URL")
 
-if not BASE_URL:  
-    BASE_URL = "https://loan-backend.onrender.com"   # fallback for Render
+BACKEND_URL = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000")
+API_URL = f"{BACKEND_URL.rstrip('/')}/predict"
 
-API_URL = BASE_URL.rstrip("/") + "/predict"
-
-st.markdown("""
-<div class="navbar"><h1>🔮 Loan Approval Prediction</h1></div>
-""", unsafe_allow_html=True)
-
-st.write("Fill the form and get prediction from **FastAPI backend**.")
-
-<<<<<<< HEAD:frontend/Streamlit_app/pages/1_Loan_Prediction.py
-API_URL = os.getenv("API_URL") + "/predict"
-=======
-API_URL = "http://127.0.0.1:8000/predict"
->>>>>>> parent of 8dc1fda (Deploy-ready):Streamlit_app/pages/1_Loan_Prediction.py
 
 with st.form("prediction_form"):
 

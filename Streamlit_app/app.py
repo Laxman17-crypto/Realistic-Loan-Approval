@@ -145,7 +145,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown("""
     <div class="kpi-card">
-        <h2>32</h2>
+        <h2>28</h2>
         <p>Engineered Features</p>
     </div>
     """, unsafe_allow_html=True)
