@@ -33,25 +33,25 @@ Predictor → Returns JSON output
 ```
 Realistic-Loan-Approval/
 └── api
-    └── data
-        └── processed/loan_data_processed.csv
-        └── raw/Loan_approval_data_2025.csv/realistic-loan-approval-dataset-us-and-canada.zip
-    └── models
-        ├── encoder.pkl
-        ├── loan_model.pkl
-        ├── model.pkl
-        ├── scaler.pkl
-    └── src
-        └── schemas
-            ├── input_schema.py
-        └── utils
-            ├── exception.py
-            ├── logger.py
-        ├── data_preprocessing.py
-        ├── predict.py
-        ├── train.py
-    ├── main.py
-    └── requirements.txt
+|   └── data
+|       └── processed/loan_data_processed.csv
+|       └── raw/Loan_approval_data_2025.csv/realistic-loan-approval-dataset-us-and-canada.zip
+|   └── models
+|       ├── encoder.pkl
+|       ├── loan_model.pkl
+|       ├── model.pkl
+|       ├── scaler.pkl
+|   └── src
+|       └── schemas
+|           ├── input_schema.py
+|       └── utils
+|           ├── exception.py
+|           ├── logger.py
+|       ├── data_preprocessing.py
+|       ├── predict.py
+|       ├── train.py
+|    ├── main.py
+|    └── requirements.txt
 │
 ├── frontend/
 │   ├── Streamlit_app/
