@@ -3,13 +3,21 @@ A **full-stack Machine Learning project** that predicts **loan approval eligibil
 Everything is containerized with **Docker** and deployed on **Render Cloud**.
 
 ## ✨ Features
+
 ✔ ML model trained on real-world loan dataset
+
 ✔ FastAPI backend exposing /predict API
+
 ✔ Streamlit interactive UI frontend
+
 ✔ Docker containerization (frontend + backend)
+
 ✔ Live cloud deployment (Render)
+
 ✔ Environment-based configurable API URLs
+
 ✔ Supports categorical + numerical input
+
 ✔ Health check endpoint for monitoring
 
 ## 📌 Project Architecture
